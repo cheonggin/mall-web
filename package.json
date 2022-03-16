@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "amfe-flexible": "^2.2.1",
+    "axios": "^0.26.1",
     "core-js": "^3.8.3",
     "normalize.css": "^8.0.1",
     "vant": "^3.4.6",
