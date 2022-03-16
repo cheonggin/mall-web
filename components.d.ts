@@ -4,7 +4,9 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
-    VanButton: typeof import('vant/es')['Button']
+    MainTabbar: typeof import('./src/components/content/main-tabbar/main-tabbar.vue')['default']
+    Tabbar: typeof import('./src/components/common/tabbar/src/tabbar.vue')['default']
+    TabbarItem: typeof import('./src/components/common/tabbar/src/tabbar-item.vue')['default']
   }
 }
 

@@ -1,0 +1,9 @@
+
+html,body,#app {
+  font-size: .22rem;
+}
+
+#app {
+  font-family: Helvetica Neue,Tahoma,Arial,PingFangSC-Regular,Hiragino Sans GB,Microsoft Yahei,sans-serif;
+  color: #3c3c3c;
+}
