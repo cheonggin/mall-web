@@ -10,5 +10,14 @@ module.exports = defineConfig({
       AutoImport({ resolvers: [VantResolver()] }),
       Components({ resolvers: [VantResolver()] })
     ]
+  },
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5000',
+        pathRewrite: { '^/api': '' },
+        changeOrigin: true
+      }
+    }
   }
 })
