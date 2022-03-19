@@ -10,6 +10,8 @@
     "commit": "cz"
   },
   "dependencies": {
+    "@better-scroll/core": "^2.4.2",
+    "@better-scroll/observe-dom": "^2.4.2",
     "amfe-flexible": "^2.2.1",
     "axios": "^0.26.1",
     "core-js": "^3.8.3",
