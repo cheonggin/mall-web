@@ -4,9 +4,15 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    BackTop: typeof import('./src/components/content/back-top/back-top.vue')['default']
     MainTabbar: typeof import('./src/components/content/main-tabbar/main-tabbar.vue')['default']
+    Navbar: typeof import('./src/components/common/navbar/navbar.vue')['default']
+    Scroll: typeof import('./src/components/common/scroll/scroll.vue')['default']
     Tabbar: typeof import('./src/components/common/tabbar/src/tabbar.vue')['default']
     TabbarItem: typeof import('./src/components/common/tabbar/src/tabbar-item.vue')['default']
+    VanSearch: typeof import('vant/es')['Search']
+    VanSwipe: typeof import('vant/es')['Swipe']
+    VanSwipeItem: typeof import('vant/es')['SwipeItem']
   }
 }
 
