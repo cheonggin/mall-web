@@ -1,9 +1,15 @@
-
-html,body,#app {
-  font-size: .22rem;
+html,
+body,
+#app {
+  font-size: 0.3rem;
 }
 
 #app {
-  font-family: Helvetica Neue,Tahoma,Arial,PingFangSC-Regular,Hiragino Sans GB,Microsoft Yahei,sans-serif;
+  font-family: Helvetica Neue, Tahoma, Arial, PingFangSC-Regular,
+    Hiragino Sans GB, Microsoft Yahei, sans-serif;
   color: #3c3c3c;
+}
+
+img {
+  width: 100%;
 }
