@@ -1,6 +1,6 @@
 <template>
   <router-view></router-view>
-  <MainTabbar/>
+  <MainTabbar v-if="$route.meta.isShowTabbar" />
 </template>
 
 <script setup lang="ts">
