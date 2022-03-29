@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 
 import Scroll from '@/components/common/scroll'
 import BackTop from '@/components/content/back-top'
@@ -27,20 +27,22 @@ import HomeSwiper from './children/home-swiper.vue'
 import HomeShortcut from './children/home-shortcut.vue'
 import HomeRecommend from './children/home-recommend.vue'
 
-import useHomeStore from '@/store/home'
+import { getHomeData } from '@/service'
 
-const homeStore = useHomeStore()
-homeStore.getHomeDataAction()
-
-const bannerList = computed(() => homeStore.bannerList)
-const shortcutList = computed(() => homeStore.shortcutList)
-const recommendList = computed(() => homeStore.recommendList)
-
+const bannerList = ref([])
+const shortcutList = ref([])
+const recommendList = ref([])
 const isShowBackTop = ref(false)
 const scrollRef = ref<InstanceType<typeof Scroll>>()
 
+getHomeData().then(res => {
+  bannerList.value = res.data.bannerList
+  shortcutList.value = res.data.shortcutList
+  recommendList.value = res.data.recommendList
+})
+
 // 根据滚动位置控制回到顶部按钮的显示与隐藏
-function contentScroll (pos: any) {
+function contentScroll (pos: { x: number; y: number }) {
   isShowBackTop.value = -pos.y > 300
 }
 

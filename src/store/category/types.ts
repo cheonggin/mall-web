@@ -1,4 +1,4 @@
-import { IHomeSwipe } from '@/store/home/types'
+import { IHomeSwipe } from '@/service/types'
 
 export interface ICategory extends IHomeSwipe {
   name: string

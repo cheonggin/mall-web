@@ -37,7 +37,7 @@
 
 <script setup lang="ts">
 import { PropType } from 'vue'
-import { IHomeRecommend } from '@/store/home/types'
+import { IHomeRecommend } from '@/service/types'
 
 defineProps({
   list: {

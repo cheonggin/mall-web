@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import { PropType } from 'vue'
-import type { IHomeSwipe } from '@/store/home/types'
+import type { IHomeSwipe } from '@/service/types'
 
 defineProps({
   images: {
