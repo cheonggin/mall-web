@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { PropType, ref } from 'vue'
 
-import { ICategory } from '@/store/category/types'
+import { ICategory } from '@/service/types'
 
 defineProps({
   list: {

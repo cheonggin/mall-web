@@ -77,7 +77,7 @@
 
 <script setup lang="ts">
 import { ref, PropType, onUpdated, onBeforeUpdate, watch, reactive } from 'vue'
-import { ICurrentCategory } from '@/store/category/types'
+import { ICurrentCategory } from '@/service/types'
 import Scroll from '@/components/common/scroll'
 
 defineProps({
@@ -155,7 +155,6 @@ function contentScroll (pos: any) {
 }
 
 .nav {
-  position: absolute;
   width: 7rem;
   overflow-x: auto;
   text-align: left;

@@ -7,22 +7,37 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref, reactive } from 'vue'
 
 import CategoryNav from './children/category-nav.vue'
 import CategorySidebar from './children/category-sidebar.vue'
 import CategoryContent from './children/category-content.vue'
 
-import useCategoryStore from '@/store/category'
+import { getCategoryList, getSubCategoryList } from '@/service'
+import { ICurrentCategory, ICategory } from '@/service/types'
 
-const categoryStore = useCategoryStore()
-categoryStore.getCategoryListAction()
+const categoryList = ref<ICategory[]>([])
+const currentSubList = reactive<ICurrentCategory>({
+  category: {} as ICategory,
+  subCategory: []
+})
 
-const categoryList = computed(() => categoryStore.categoryList)
-const currentSubList = computed(() => categoryStore.currentSubList)
+async function initData () {
+  const { data } = await getCategoryList()
+  categoryList.value = data
+
+  getSubCategoryListAction(1)
+}
+initData()
+
+async function getSubCategoryListAction (id:number) {
+  const { data } = await getSubCategoryList(id)
+  currentSubList.category = data.category
+  currentSubList.subCategory = data.subCategory
+}
 
 function selectItem (id: number) {
-  categoryStore.getSubCategoryListAction(id)
+  getSubCategoryListAction(id)
 }
 </script>
 

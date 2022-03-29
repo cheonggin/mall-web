@@ -40,6 +40,32 @@ export interface IHomeRecommend {
   update_at: string
 }
 
+// category
+export interface ICategory extends IHomeSwipe {
+  name: string
+}
+
+interface ICategoryProduct extends ICategory {
+  id: number
+  category_id: number
+  is_multi_price: boolean
+  labels: any[] | null
+  market_price: string
+  price: string
+  product_desc: string
+  product_desc_origin: string
+  product_id: number
+}
+
+interface ISubCategory extends ICategory {
+  category_products: ICategoryProduct[]
+}
+
+export interface ICurrentCategory {
+  category: ICategory
+  subCategory: ISubCategory[]
+}
+
 // search,搜索关键词
 export interface IKeywordList {
   id: number
