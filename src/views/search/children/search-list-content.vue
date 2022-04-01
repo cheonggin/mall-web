@@ -1,17 +1,19 @@
 <template>
   <div class="goods-list">
-    <div class="goods-item" v-for="item in list" :key="item.id" @click="$router.push(`/detail/${item.product_id}`)">
+    <div
+      class="goods-item"
+      v-for="item in list"
+      :key="item.id"
+      @click="$router.push(`/detail/${item.product_id}`)"
+    >
       <img :src="item.image" alt="" class="item-img" />
       <div class="item-con">
         <h3>{{ item.name }}</h3>
         <p class="item-desc" v-html="item.desc"></p>
-        <div
-          class="item-specs-list"
-          v-if="item.class_parameters.list.length > 0"
-        >
+        <div class="item-specs-list" v-if="item.class_parameters.length > 0">
           <div
             class="specs-item"
-            v-for="(value, index) in item.class_parameters.list"
+            v-for="(value, index) in item.class_parameters"
             :key="index"
           >
             <span class="name">{{ value.name }}</span>
@@ -28,7 +30,10 @@
             </template>
           </span>
         </div>
-        <div class="item-count"></div>
+        <div class="item-count">
+          <span class="comments">{{ item.comments_total }}条评价</span>
+          <span class="satisfy">{{ item.satisfy_per }}满意</span>
+        </div>
       </div>
     </div>
   </div>
@@ -147,6 +152,17 @@ defineProps({
         line-height: 1;
         vertical-align: bottom;
       }
+    }
+  }
+
+  .item-count {
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 0.28rem;
+    line-height: 0.34rem;
+    margin-top: 0.14rem;
+
+    .comments{
+      margin-right: 0.14rem;
     }
   }
 }

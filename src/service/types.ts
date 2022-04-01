@@ -94,13 +94,6 @@ interface IClassParametersList {
   value: string
 }
 
-interface IClassParameters {
-  class_id: number
-  class_name: string
-  class_sort: number
-  list: IClassParametersList[]
-}
-
 export interface IGoodsList {
   id: number
   product_id: number
@@ -113,5 +106,5 @@ export interface IGoodsList {
   satisfy_per: string
   comments_total: string
   activity_label: IActiveLabel[]
-  class_parameters: IClassParameters
+  class_parameters: IClassParametersList[]
 }
