@@ -82,16 +82,19 @@ interface IActiveLabel {
   type_desc: string
 }
 
-interface IClassParametersList {
+interface IClassParameters {
   bottom_title: string
   icon: string
-  is_page_show: boolean
-  log_code: string
   name: string
-  parameter_id: number
-  search_title: string
   top_title: string
   value: string
+}
+
+interface IClassParametersList extends IClassParameters {
+  is_page_show: boolean
+  log_code: string
+  parameter_id: number
+  search_title: string
 }
 
 export interface IGoodsList {
@@ -107,4 +110,49 @@ export interface IGoodsList {
   comments_total: string
   activity_label: IActiveLabel[]
   class_parameters: IClassParametersList[]
+}
+
+interface IGoodsInfoTab {
+  img_url: string
+}
+
+export interface IGoodsInfoTabList{
+  id:number
+  page_info:IGoodsInfoTab[]
+  tab_name:string
+}
+
+export interface IDetailSwiper extends IGoodsInfoTab {
+  id: number
+}
+
+export interface IGoodsClassParametersList extends IClassParameters {
+  is_page_show: boolean
+}
+
+interface IDetail {
+  satisfy_per: string
+  comment_tags: string[]
+}
+
+interface IList {
+  add_time: string
+  comment_content: string
+  comment_images: string[]
+  user_avatar: string
+  user_name: string
+}
+
+export interface IGoodsInfoComments {
+  detail: IDetail
+  list: IList[]
+}
+
+export interface IGoodsInfoData {
+  id: number
+  name: string
+  price: string
+  product_desc: string
+  sell_point_desc: string[]
+  class_parameters: IGoodsClassParametersList[]
 }

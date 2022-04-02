@@ -21,3 +21,7 @@ export function getKeywordList () {
 export function getProductList (queryInfo:IQueryInfo) {
   return http.get<IDataType>({ url: '/page/goods', params: queryInfo })
 }
+
+export function getGoodsInfo (id:number) {
+  return http.get<IDataType>({ url: `/page/goods/${id}` })
+}
