@@ -12,7 +12,6 @@ declare module 'vue' {
     TabbarItem: typeof import('./src/components/common/tabbar/src/tabbar-item.vue')['default']
     VanActionBar: typeof import('vant/es')['ActionBar']
     VanActionBarButton: typeof import('vant/es')['ActionBarButton']
-    VanActionBarIcon: typeof import('vant/es')['ActionBarIcon']
     VanSearch: typeof import('vant/es')['Search']
     VanSwipe: typeof import('vant/es')['Swipe']
     VanSwipeItem: typeof import('vant/es')['SwipeItem']
