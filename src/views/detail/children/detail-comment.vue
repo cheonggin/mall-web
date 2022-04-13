@@ -3,14 +3,14 @@
     <div class="comments-title">
       <div class="comments-title-left">用户评价</div>
       <div class="comments-title-right">
-        {{ data?.detail.satisfy_per }}
+        {{ data?.satisfy_per }}
       </div>
     </div>
 
     <div class="comments-tags">
       <div
         class="comments-tags-text"
-        v-for="item in data?.detail.comment_tags"
+        v-for="item in data.comment_tags"
         :key="item"
       >
         {{ item }}
@@ -18,7 +18,7 @@
     </div>
 
     <div class="comments-container">
-      <div class="card-box" v-for="(value, i) in data?.list" :key="i">
+      <div class="card-box" v-for="(value, i) in data.list" :key="i">
         <div class="comment-header">
           <div class="avatar-img-box">
             <img :src="value.user_avatar" alt="" />

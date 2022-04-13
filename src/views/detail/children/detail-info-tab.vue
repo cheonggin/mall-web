@@ -21,9 +21,9 @@
           <div
             class="section"
             v-for="value in item.page_info"
-            :key="value.img_url"
+            :key="value"
           >
-            <img :src="value.img_url" alt="" />
+            <img :src="value" alt="" />
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@
     </div>
 
     <van-action-bar-button type="warning" text="加入购物车" />
-    <van-action-bar-button type="danger" text="立即购买" />
+    <van-action-bar-button type="danger" text="立即购买"/>
   </van-action-bar>
 </template>
 

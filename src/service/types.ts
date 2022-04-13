@@ -72,80 +72,21 @@ export interface IKeywordList {
   keyword: string
 }
 
-// search-list,产品列表
-interface IActiveLabel {
-  w: number
-  h: number
+// goods
+
+// goods detail
+export interface IDetailSwiper {
+  id: number
   img_url: string
-  img_url_webp: string
-  type: string
-  type_desc: string
 }
 
 interface IClassParameters {
   bottom_title: string
   icon: string
+  is_page_show: boolean
   name: string
   top_title: string
   value: string
-}
-
-interface IClassParametersList extends IClassParameters {
-  is_page_show: boolean
-  log_code: string
-  parameter_id: number
-  search_title: string
-}
-
-export interface IGoodsList {
-  id: number
-  product_id: number
-  name: string
-  desc: string
-  image: string
-  price: string
-  market_price: string
-  is_multi_price: boolean
-  satisfy_per: string
-  comments_total: string
-  activity_label: IActiveLabel[]
-  class_parameters: IClassParametersList[]
-}
-
-interface IGoodsInfoTab {
-  img_url: string
-}
-
-export interface IGoodsInfoTabList{
-  id:number
-  page_info:IGoodsInfoTab[]
-  tab_name:string
-}
-
-export interface IDetailSwiper extends IGoodsInfoTab {
-  id: number
-}
-
-export interface IGoodsClassParametersList extends IClassParameters {
-  is_page_show: boolean
-}
-
-interface IDetail {
-  satisfy_per: string
-  comment_tags: string[]
-}
-
-interface IList {
-  add_time: string
-  comment_content: string
-  comment_images: string[]
-  user_avatar: string
-  user_name: string
-}
-
-export interface IGoodsInfoComments {
-  detail: IDetail
-  list: IList[]
 }
 
 export interface IGoodsInfoData {
@@ -153,6 +94,27 @@ export interface IGoodsInfoData {
   name: string
   price: string
   product_desc: string
+  class_parameters: IClassParameters[]
   sell_point_desc: string[]
-  class_parameters: IGoodsClassParametersList[]
+}
+
+interface IGoodsInfoCommentsList{
+  add_time:string
+  comment_content:string
+  comment_images:string[]
+  user_avatar:string
+  user_name:string
+}
+
+export interface IGoodsInfoComments {
+  id: number
+  satisfy_per: string
+  list: IGoodsInfoCommentsList[]
+  comment_tags: string[]
+}
+
+export interface IGoodsInfoTabList{
+  id:number
+  tab_name:string
+  page_info:string[]
 }
