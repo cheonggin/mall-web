@@ -1,4 +1,5 @@
 import { localCache } from '@/utils/cache'
+import { Toast } from 'vant'
 import Http from './src'
 import { baseURL, timeout } from './src/config'
 
@@ -13,6 +14,13 @@ const http = new Http({
       }
 
       return config
+    },
+    responseOnRejected: error => {
+      if (error.response) {
+        if (error.response.data.msg) {
+          Toast.fail(error.response.data.msg)
+        }
+      }
     }
   }
 })

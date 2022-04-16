@@ -5,5 +5,6 @@ import { createPinia } from 'pinia'
 import 'amfe-flexible/index.min.js'
 
 import '@/assets/styles/index.css'
+import 'vant/lib/index.css'
 
 createApp(App).use(router).use(createPinia()).mount('#app')

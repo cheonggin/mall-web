@@ -1,7 +1,12 @@
+interface IMsg {
+  error: string
+  message: string
+  statusCode: number
+}
 export interface IDataType {
   code: number
   data: any
-  msg: string
+  msg: string | IMsg
 }
 
 export interface IQueryInfo {
@@ -98,12 +103,12 @@ export interface IGoodsInfoData {
   sell_point_desc: string[]
 }
 
-interface IGoodsInfoCommentsList{
-  add_time:string
-  comment_content:string
-  comment_images:string[]
-  user_avatar:string
-  user_name:string
+interface IGoodsInfoCommentsList {
+  add_time: string
+  comment_content: string
+  comment_images: string[]
+  user_avatar: string
+  user_name: string
 }
 
 export interface IGoodsInfoComments {
@@ -113,8 +118,8 @@ export interface IGoodsInfoComments {
   comment_tags: string[]
 }
 
-export interface IGoodsInfoTabList{
-  id:number
-  tab_name:string
-  page_info:string[]
+export interface IGoodsInfoTabList {
+  id: number
+  tab_name: string
+  page_info: string[]
 }

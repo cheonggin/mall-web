@@ -7,6 +7,8 @@ const profileVue = () => import('@/views/profile/profile.vue')
 const searchVue = () => import('@/views/search/search.vue')
 const searchListVue = () => import('@/views/search/search-list.vue')
 const detailVue = () => import('@/views/detail/detail.vue')
+const loginVue = () => import('@/views/login-register/login.vue')
+const registerVue = () => import('@/views/login-register/register.vue')
 
 const routes: Array<RouteRecordRaw> = [
   { path: '/', redirect: '/home' },
@@ -38,7 +40,9 @@ const routes: Array<RouteRecordRaw> = [
   { path: '/search', name: 'search', component: searchVue },
   { path: '/search/list', name: 'search-list', component: searchListVue },
 
-  { path: '/detail/:id', name: 'detail', component: detailVue }
+  { path: '/detail/:id', name: 'detail', component: detailVue },
+  { path: '/login', name: 'login', component: loginVue },
+  { path: '/register', name: 'register', component: registerVue }
 ]
 
 const router = createRouter({
