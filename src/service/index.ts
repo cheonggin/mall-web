@@ -31,6 +31,10 @@ export function register (data: LoginDto) {
   return http.post<IDataType>({ url: '/register', data })
 }
 
-export function login (data:LoginDto) {
+export function login (data: LoginDto) {
   return http.post<IDataType>({ url: '/login', data })
+}
+
+export function uploadAvatar (data: any) {
+  return http.post<IDataType>({ url: 'file/avatar', data })
 }
