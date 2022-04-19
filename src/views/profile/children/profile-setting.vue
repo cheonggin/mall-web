@@ -1,15 +1,6 @@
 <template>
   <div class="profile-setting">
-    <Navbar>
-      <template #left>
-        <div class="app-header-icon icon-back" @click="$router.back()">
-          <img src="~@/assets/images/common/back.png" alt="" />
-        </div>
-      </template>
-      <template #center>
-        <div class="title">个人中心</div>
-      </template>
-    </Navbar>
+    <ProfileNav title="个人中心" />
 
     <div class="wrapper ignore">
       <van-uploader result-type="file" :after-read="handleUpload">
@@ -19,9 +10,7 @@
       </van-uploader>
     </div>
 
-    <footer @click="logout">
-      <a href="javascript:;">退出账号</a>
-    </footer>
+    <ProfileFooter title="退出账号" @after-click="logout" />
   </div>
 </template>
 
@@ -31,7 +20,8 @@ import { useRouter } from 'vue-router'
 import { Toast } from 'vant'
 import { useLoginStore } from '@/store/login/login'
 
-import Navbar from '@/components/common/navbar'
+import ProfileNav from './profile-nav.vue'
+import ProfileFooter from './profile-footer.vue'
 import { localCache } from '@/utils/cache'
 import { IUserInfo } from '@/store/login/types'
 
@@ -62,20 +52,6 @@ function logout () {
 </script>
 
 <style lang="scss" scoped>
-.app-header-icon {
-  width: 1.2rem;
-
-  img {
-    width: 0.7rem;
-  }
-}
-
-.title {
-  width: 80%;
-  text-align: center;
-  font-size: 0.4rem;
-}
-
 .wrapper {
   margin: 3rem auto;
   padding: 0 0.5rem;
@@ -99,26 +75,6 @@ function logout () {
     img {
       width: 100%;
     }
-  }
-}
-
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 10000;
-  background-color: #f4f4f4;
-  height: 1.4rem;
-  text-align: center;
-  line-height: 1.4rem;
-
-  a {
-    font-size: 0.4rem;
-    display: block;
-    width: 100%;
-    height: 100%;
-    color: #3c3c3c;
   }
 }
 </style>
