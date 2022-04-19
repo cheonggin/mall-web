@@ -18,7 +18,7 @@
         <i class="iconfont icon-order"></i>
         <cite>我的订单</cite>
       </li>
-      <li>
+      <li @click="$router.push('/profile/address')">
         <i class="iconfont icon-address"></i>
         <cite>地址管理</cite>
       </li>

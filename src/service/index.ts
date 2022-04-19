@@ -38,3 +38,19 @@ export function login (data: LoginDto) {
 export function uploadAvatar (data: any) {
   return http.post<IDataType>({ url: 'file/avatar', data })
 }
+
+export function addData (url: string, data: any) {
+  return http.post<IDataType>({ url, data })
+}
+
+export function getData (url: string) {
+  return http.get<IDataType>({ url })
+}
+
+export function updateData (url: string, data: any) {
+  return http.patch<IDataType>({ url, data })
+}
+
+export function deleteData (url: string) {
+  return http.delete<IDataType>({ url })
+}

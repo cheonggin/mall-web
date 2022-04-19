@@ -56,8 +56,8 @@ class Http {
     return this.request<T>({ ...config, method: 'POST' })
   }
 
-  put<T = any> (config: HttpConfig): Promise<T> {
-    return this.request<T>({ ...config, method: 'PUT' })
+  patch<T = any> (config: HttpConfig): Promise<T> {
+    return this.request<T>({ ...config, method: 'PATCH' })
   }
 
   delete<T = any> (config: HttpConfig): Promise<T> {

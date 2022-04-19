@@ -12,6 +12,8 @@ declare module 'vue' {
     TabbarItem: typeof import('./src/components/common/tabbar/src/tabbar-item.vue')['default']
     VanActionBar: typeof import('vant/es')['ActionBar']
     VanActionBarButton: typeof import('vant/es')['ActionBarButton']
+    VanAddressEdit: typeof import('vant/es')['AddressEdit']
+    VanAddressList: typeof import('vant/es')['AddressList']
     VanButton: typeof import('vant/es')['Button']
     VanCellGroup: typeof import('vant/es')['CellGroup']
     VanField: typeof import('vant/es')['Field']
