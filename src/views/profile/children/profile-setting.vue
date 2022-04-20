@@ -29,7 +29,6 @@ const router = useRouter()
 const loginStore = useLoginStore()
 const fileUrl = computed(() => loginStore.avatarUrl)
 
-loginStore.loadLocalLogin()
 async function handleUpload (file: any) {
   const formData = new FormData()
   formData.append('file', file.file)

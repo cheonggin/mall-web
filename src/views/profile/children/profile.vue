@@ -39,7 +39,6 @@ import { useLoginStore } from '@/store/login/login'
 
 // pinia
 const loginStore = useLoginStore()
-loginStore.loadLocalLogin()
 const loginState = computed(() => loginStore.loginState)
 const userInfo = computed(() => loginStore.userInfo)
 </script>
