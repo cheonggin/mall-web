@@ -18,6 +18,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     'vue/multi-word-component-names': 'off',
-    camelcase: 'off'
+    camelcase: 'off',
+    'array-callback-return': 'off'
   }
 }

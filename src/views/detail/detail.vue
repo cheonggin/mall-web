@@ -17,13 +17,13 @@
         <DetailInfoTab ref="tabRef" :list="tabList" />
       </div>
     </Scroll>
-    <DetailFooter />
+    <DetailFooter @add="addToCart" :total="total" />
     <BackTop v-show="isShowBackTop" @click="backToTop" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { onUpdated, ref } from 'vue'
+import { computed, onUpdated, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 import Scroll from '@/components/common/scroll'
@@ -43,6 +43,11 @@ import {
   IGoodsInfoTabList,
   IDetailSwiper
 } from '@/service/types'
+import { useCartStore } from '@/store/cart'
+
+// pinia
+const cartStore = useCartStore()
+const total = computed(() => cartStore.total) // 购物车列表中所有产品的个数总和
 
 const route = useRoute()
 const product_id = ref(parseInt(route.params.id as string))
@@ -82,6 +87,11 @@ function onScroll (pos: { x: number; y: number }) {
 
   // 滚动时动态修改currentIndex
   _listenScrollTheme(-pos.y)
+}
+
+// 添加到购物车
+function addToCart () {
+  cartStore.addDataAction({ count: 1, product_id: product_id.value })
 }
 
 // 点击回到顶部

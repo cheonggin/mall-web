@@ -1,21 +1,35 @@
 <template>
   <van-action-bar>
-    <div class="footer-btn" v-for="item in data" :key="item.className">
-      <i :class="['img-icon', item.className]"></i>
-      <span>{{ item.text }}</span>
+    <div class="footer-btn" @click="$router.push('/home')">
+      <i class="img-icon icon-home"></i>
+      <span>首页</span>
+    </div>
+    <div class="footer-btn">
+      <i class="img-icon icon-service"></i>
+      <span>客服</span>
+    </div>
+    <div class="footer-btn" @click="$router.push('/cart')">
+      <i class="img-icon icon-cart"></i>
+      <span>购物车</span>
+      <em class="bubble" v-if="total > 0">{{ total }}</em>
     </div>
 
-    <van-action-bar-button type="warning" text="加入购物车" />
-    <van-action-bar-button type="danger" text="立即购买"/>
+    <van-action-bar-button
+      type="warning"
+      text="加入购物车"
+      @click="handleAddCick"
+    />
+    <van-action-bar-button type="danger" text="立即购买" />
   </van-action-bar>
 </template>
 
 <script setup lang="ts">
-const data = [
-  { className: 'icon-home', text: '首页' },
-  { className: 'icon-service', text: '客服' },
-  { className: 'icon-cart', text: '购物车' }
-]
+defineProps({ total: { type: Number, default: 0 } })
+const emits = defineEmits(['add'])
+
+function handleAddCick () {
+  emits('add')
+}
 </script>
 
 <style lang="scss" scoped>
@@ -52,6 +66,22 @@ const data = [
     &.icon-cart {
       background-image: url('@/assets/images/detail/icon-cart.png');
     }
+  }
+
+  .bubble {
+    position: absolute;
+    top: 0.12rem;
+    left: 50%;
+    width: 0.44rem;
+    line-height: 0.44rem;
+    height: 0.44rem;
+    color: #fff;
+    background: linear-gradient(45deg, #ff7d00, #ff5934);
+    font-size: 0.18rem;
+    font-style: normal;
+    border-radius: 0.44rem;
+    box-sizing: border-box;
+    transform: translate3d(0.1rem, -20%, 0);
   }
 }
 </style>

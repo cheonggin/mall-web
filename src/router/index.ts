@@ -30,8 +30,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/cart',
     name: 'cart',
-    component: cartVue,
-    meta: { isShowTabbar: true }
+    component: cartVue
   },
   {
     path: '/profile/index',
