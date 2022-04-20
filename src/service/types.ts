@@ -78,6 +78,26 @@ export interface IKeywordList {
 }
 
 // goods
+interface IGoodsClass {
+  bottom_title: string
+  icon: string
+  name: string
+  search_title: string
+  top_title: string
+  value: string
+}
+
+export interface IGoodsList {
+  id: number
+  name: string
+  desc: string
+  image: string
+  price: string
+  satisfy_per: string
+  comments_total: string
+  class_parameters: IGoodsClass[]
+  activity_label: string[]
+}
 
 // goods detail
 export interface IDetailSwiper {

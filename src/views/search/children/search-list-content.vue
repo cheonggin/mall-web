@@ -4,7 +4,7 @@
       class="goods-item"
       v-for="item in list"
       :key="item.id"
-      @click="$router.push(`/detail/${item.product_id}`)"
+      @click="$router.push(`/detail/${item.id}`)"
     >
       <img :src="item.image" alt="" class="item-img" />
       <div class="item-con">
@@ -26,7 +26,7 @@
           <span class="spe">起</span>
           <span class="icon-box" v-if="item.activity_label.length > 0">
             <template v-for="val in item.activity_label" :key="val.type">
-              <img :src="val.img_url" alt="" />
+              <img :src="val" alt="" />
             </template>
           </span>
         </div>
