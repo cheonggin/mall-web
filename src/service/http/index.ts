@@ -1,3 +1,4 @@
+import router from '@/router'
 import { localCache } from '@/utils/cache'
 import { Toast } from 'vant'
 import Http from './src'
@@ -17,8 +18,13 @@ const http = new Http({
     },
     responseOnRejected: error => {
       if (error.response) {
-        if (error.response.data.msg) {
-          Toast.fail(error.response.data.msg)
+        switch (error.response.status) {
+          case 401:
+            Toast.fail(error.response.data.msg)
+            router.push('/login')
+            break
+          default:
+            Toast.fail(error.response.data.msg)
         }
       }
     }
