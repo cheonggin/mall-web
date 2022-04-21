@@ -72,6 +72,23 @@ function onSelect (item: ICartList) {
   cartStore.updateDataAction(item.product_id, { checked: item.checked })
 }
 
+// 处理全选
+function handleCheckedAll () {
+  // 判断是否有未选中的按钮
+  const value = cartStore.cartList.find(item => !item.checked)
+
+  // 有未选中的按钮则将cartList的checked全部改为true，无则改为false
+  if (value) {
+    cartStore.cartList.map(item => {
+      item.checked = true
+    })
+  } else {
+    cartStore.cartList.map(item => {
+      item.checked = false
+    })
+  }
+}
+
 function onAdd (item: ICartList) {
   item.count++
   cartStore.updateDataAction(item.product_id, { count: item.count })
@@ -87,12 +104,6 @@ function onDelete (item: ICartList) {
   cartStore.deleteDataAction(item.product_id)
 }
 
-// 处理全选
-function handleCheckedAll () {
-  cartStore.cartList.map(item => {
-    item.checked = !item.checked
-  })
-}
 </script>
 
 <style lang="scss" scoped>
