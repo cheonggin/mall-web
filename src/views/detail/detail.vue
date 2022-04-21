@@ -47,6 +47,7 @@ import { useCartStore } from '@/store/cart'
 
 // pinia
 const cartStore = useCartStore()
+cartStore.getDataAction()
 const total = computed(() => cartStore.total) // 购物车列表中所有产品的个数总和
 
 const route = useRoute()
@@ -91,7 +92,15 @@ function onScroll (pos: { x: number; y: number }) {
 
 // 添加到购物车
 function addToCart () {
-  cartStore.addDataAction({ count: 1, product_id: product_id.value })
+  // 判断cartList中是否有该产品，有则修改产品的count值，无则新增
+  const value = cartStore.cartList.find(item => item.product_id === product_id.value)
+
+  if (value) {
+    value.count++
+    cartStore.updateDataAction(value.product_id, { count: value.count })
+  } else {
+    cartStore.addDataAction({ count: 1, product_id: product_id.value })
+  }
 }
 
 // 点击回到顶部

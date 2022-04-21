@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { Toast, Dialog } from 'vant'
 import { addData, deleteData, getData, updateData } from '@/service'
-import { CartState, updateCartDto } from './types'
+import { CartState, CreateCartDto, UpdateCartDto } from './types'
 
 const useCartStore = defineStore('cart', {
   state: (): CartState => {
@@ -40,8 +40,8 @@ const useCartStore = defineStore('cart', {
     }
   },
   actions: {
-    async addDataAction (info: any) {
-      const { code } = await addData('/page/cart', info)
+    async addDataAction (createCartDto: CreateCartDto) {
+      const { code } = await addData('/page/cart', createCartDto)
 
       if (code === 0) {
         // 添加成功后重新获取购物车数据
@@ -55,7 +55,7 @@ const useCartStore = defineStore('cart', {
       this.cartList = data
     },
 
-    async updateDataAction (product_id: number, updateCartDto: updateCartDto) {
+    async updateDataAction (product_id: number, updateCartDto: UpdateCartDto) {
       await updateData(`/page/cart/${product_id}`, updateCartDto)
     },
 

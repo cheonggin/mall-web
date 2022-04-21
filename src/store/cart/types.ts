@@ -12,7 +12,12 @@ export interface CartState {
   cartList: ICartList[]
 }
 
-export interface updateCartDto{
+export interface CreateCartDto {
+  count: number
+  product_id: number
+}
+
+export interface UpdateCartDto {
   count?: number
   checked?: boolean
 }
