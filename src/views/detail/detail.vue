@@ -17,14 +17,14 @@
         <DetailInfoTab ref="tabRef" :list="tabList" />
       </div>
     </Scroll>
-    <DetailFooter @add="addToCart" :total="total" />
+    <DetailFooter @add="addToCart" :total="total" @buy="handleBuy" />
     <BackTop v-show="isShowBackTop" @click="backToTop" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, onUpdated, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 import Scroll from '@/components/common/scroll'
 import BackTop from '@/components/content/back-top'
@@ -41,12 +41,18 @@ import {
   IGoodsInfoData,
   IGoodsInfoComments,
   IGoodsInfoTabList,
-  IDetailSwiper
+  IDetailSwiper,
+  IGoodsList
 } from '@/service/types'
 import { useCartStore } from '@/store/cart'
+import { useOrderStore } from '@/store/order'
+import { sessionCache } from '@/utils/cache'
+
+const router = useRouter()
 
 // pinia
 const cartStore = useCartStore()
+const orderStore = useOrderStore()
 cartStore.getDataAction()
 const total = computed(() => cartStore.total) // 购物车列表中所有产品的个数总和
 
@@ -56,6 +62,7 @@ const bannerList = ref<IDetailSwiper[]>()
 const goodsInfoData = ref<IGoodsInfoData>({} as IGoodsInfoData)
 const commentsData = ref<IGoodsInfoComments>({} as IGoodsInfoComments)
 const tabList = ref<IGoodsInfoTabList[]>([])
+const product = ref<IGoodsList>({} as IGoodsList)
 const currentIndex = ref(0)
 const isShowBackTop = ref(false)
 const scrollRef = ref<InstanceType<typeof Scroll>>()
@@ -75,6 +82,7 @@ async function initData (id: number) {
   goodsInfoData.value = data.detail
   commentsData.value = data.comment
   tabList.value = data.tabs
+  product.value = data.product
 }
 initData(product_id.value)
 
@@ -101,6 +109,14 @@ function addToCart () {
   } else {
     cartStore.addDataAction({ count: 1, product_id: product_id.value })
   }
+}
+
+// 点击立即购买
+function handleBuy () {
+  sessionCache.setCache('product', [{ product: product.value, count: 1 }])
+  orderStore.orderGoodsList = [{ product: product.value, count: 1 }]
+
+  router.push({ path: '/order', query: { type: 'detail' } })
 }
 
 // 点击回到顶部

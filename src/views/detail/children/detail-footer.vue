@@ -19,16 +19,20 @@
       text="加入购物车"
       @click="handleAddCick"
     />
-    <van-action-bar-button type="danger" text="立即购买" />
+    <van-action-bar-button type="danger" text="立即购买" @click="handleBuy" />
   </van-action-bar>
 </template>
 
 <script setup lang="ts">
 defineProps({ total: { type: Number, default: 0 } })
-const emits = defineEmits(['add'])
+const emits = defineEmits(['add', 'buy'])
 
 function handleAddCick () {
   emits('add')
+}
+
+function handleBuy () {
+  emits('buy')
 }
 </script>
 
