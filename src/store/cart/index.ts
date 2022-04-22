@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { Toast, Dialog } from 'vant'
+import { Toast } from 'vant'
 import { addData, deleteData, getData, updateData } from '@/service'
 import { CartState, CreateCartDto, UpdateCartDto } from './types'
 
@@ -26,7 +26,7 @@ const useCartStore = defineStore('cart', {
       state.cartList.forEach(item => {
         if (item.checked) {
           total.count += item.count
-          total.price += (item.count * parseInt(item.product.price))
+          total.price += item.count * parseInt(item.product.price)
         }
       })
 
@@ -37,6 +37,13 @@ const useCartStore = defineStore('cart', {
       const val = state.cartList.find(item => item.checked === false)
 
       return !val
+    },
+
+    // 当前购物车列表中选中的商品
+    selectedList: state => {
+      const list = state.cartList.filter(item => item.checked)
+
+      return list
     }
   },
   actions: {
@@ -52,6 +59,7 @@ const useCartStore = defineStore('cart', {
 
     async getDataAction () {
       const { data } = await getData('/page/cart')
+
       this.cartList = data
     },
 
@@ -59,15 +67,11 @@ const useCartStore = defineStore('cart', {
       await updateData(`/page/cart/${product_id}`, updateCartDto)
     },
 
-    deleteDataAction (product_id: number) {
-      Dialog.confirm({ message: '确认从购物车中删除？' })
-        .then(async () => {
-          await deleteData(`/page/cart/${product_id}`)
+    async deleteDataAction (product_ids: string) {
+      await deleteData(`/page/cart/${product_ids}`)
 
-          // 删除成功后重新请求购物车数据
-          this.getDataAction()
-        })
-        .catch(() => Toast.fail('已取消'))
+      // 删除成功后重新请求购物车数据
+      this.getDataAction()
     }
   }
 })

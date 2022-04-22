@@ -41,12 +41,14 @@
         @delete="onDelete"
       />
     </Scroll>
-    <CartFooter :price="checkedPrice" :count="checkedTotal" :isCheckedAll="isCheckedAll" @toggle="handleCheckedAll" />
+    <CartFooter :price="checkedPrice" :count="checkedTotal" :isCheckedAll="isCheckedAll" @toggle="handleCheckedAll" @settleAccounts="handleSettleAccounts" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { Toast, Dialog } from 'vant'
 
 import Scroll from '@/components/common/scroll'
 import CartList from './children/cart-list.vue'
@@ -55,6 +57,8 @@ import CartFooter from './children/cart-footer.vue'
 import { useLoginStore } from '@/store/login/login'
 import { useCartStore } from '@/store/cart'
 import { ICartList } from '@/store/cart/types'
+
+const router = useRouter()
 
 // pinia
 const loginStore = useLoginStore()
@@ -65,6 +69,7 @@ const cartList = computed(() => cartStore.cartList)
 const checkedTotal = computed(() => cartStore.checkedTotal.count)
 const checkedPrice = computed(() => cartStore.checkedTotal.price)
 const isCheckedAll = computed(() => cartStore.isCheckedAll)
+const selectedList = computed(() => cartStore.selectedList)
 
 // 处理单选勾选状态
 function onSelect (item: ICartList) {
@@ -101,9 +106,21 @@ function onSub (item: ICartList) {
 }
 
 function onDelete (item: ICartList) {
-  cartStore.deleteDataAction(item.product_id)
+  Dialog.confirm({ message: '确认从购物车中删除？' })
+    .then(async () => {
+      cartStore.deleteDataAction('' + item.product_id)
+    })
+    .catch(() => Toast.fail('已取消'))
 }
 
+// 结算
+function handleSettleAccounts () {
+  if (selectedList.value.length <= 0) {
+    return Toast.fail('请选择要购买的商品')
+  }
+
+  router.push('/order')
+}
 </script>
 
 <style lang="scss" scoped>

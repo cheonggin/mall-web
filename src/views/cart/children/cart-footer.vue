@@ -8,7 +8,7 @@
     <div class="btn continue" @click="$router.push('/category')">
       继续购物
     </div>
-    <div class="btn" @click="$router.push('/order')">去结算</div>
+    <div class="btn" @click="settleAccounts">去结算</div>
   </div>
 </template>
 
@@ -18,10 +18,14 @@ defineProps({
   count: { type: Number, default: 0 },
   price: { type: Number, default: 0 }
 })
-const emits = defineEmits(['toggle'])
+const emits = defineEmits(['toggle', 'settleAccounts'])
 
 function handleClick () {
   emits('toggle')
+}
+
+function settleAccounts () {
+  emits('settleAccounts')
 }
 </script>
 
