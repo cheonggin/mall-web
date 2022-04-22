@@ -1,6 +1,7 @@
-import type { AddressListAddress, AddressEditInfo } from 'vant'
+import { AddressListAddress, AddressEditInfo } from 'vant'
 
 export interface AddressState {
-  addressInfo:AddressEditInfo
+  addressInfo: AddressEditInfo
   addressList: AddressListAddress[]
+  selectAddress: AddressListAddress
 }

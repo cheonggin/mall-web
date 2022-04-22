@@ -1,13 +1,20 @@
 import { addData, deleteData, getData, updateData } from '@/service'
+import { localCache } from '@/utils/cache'
 import { defineStore } from 'pinia'
-import { Toast, AddressEditInfo } from 'vant'
+import { Toast, AddressEditInfo, AddressListAddress } from 'vant'
 import { AddressState } from './types'
 
 const useAddressStore = defineStore('address', {
   state: (): AddressState => {
     return {
       addressInfo: {} as AddressEditInfo,
-      addressList: []
+      addressList: [],
+      selectAddress: {} as AddressListAddress
+    }
+  },
+  getters: {
+    defualtAddress: state => {
+      return state.addressList.find(item => item.isDefault === true)
     }
   },
   actions: {
@@ -44,6 +51,14 @@ const useAddressStore = defineStore('address', {
     async deleteDataAction (id: number) {
       const { code } = await deleteData(`/page/address/${id}`)
       if (code === 0) Toast.success('删除成功')
+    },
+
+    loadLocalData () {
+      const select_address = localCache.getCache('select_address')
+
+      if (select_address) {
+        this.selectAddress = select_address
+      }
     }
   }
 })
