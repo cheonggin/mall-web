@@ -13,6 +13,7 @@ const detailVue = () => import('@/views/detail/detail.vue')
 const loginVue = () => import('@/views/login-register/login.vue')
 const registerVue = () => import('@/views/login-register/register.vue')
 const orderVue = () => import('@/views/order/order.vue')
+const paymentVue = () => import('@/views/payment/payment.vue')
 
 const routes: Array<RouteRecordRaw> = [
   { path: '/', redirect: '/home' },
@@ -76,7 +77,8 @@ const routes: Array<RouteRecordRaw> = [
   { path: '/login', name: 'login', component: loginVue },
   { path: '/register', name: 'register', component: registerVue },
 
-  { path: '/order', name: 'order', component: orderVue }
+  { path: '/order', name: 'order', component: orderVue },
+  { path: '/payment', name: 'payment', component: paymentVue }
 ]
 
 const router = createRouter({
