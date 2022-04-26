@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { Toast } from 'vant'
 import { addData, deleteData, getData, updateData } from '@/service'
 import { CartState, CreateCartDto, UpdateCartDto } from './types'
+import { localCache } from '@/utils/cache'
 
 const useCartStore = defineStore('cart', {
   state: (): CartState => {
@@ -61,10 +62,14 @@ const useCartStore = defineStore('cart', {
       const { data } = await getData('/page/cart')
 
       this.cartList = data
+      localCache.setCache('cartList', this.cartList)
     },
 
     async updateDataAction (product_id: number, updateCartDto: UpdateCartDto) {
       await updateData(`/page/cart/${product_id}`, updateCartDto)
+
+      // 重新请求购物车数据
+      this.getDataAction()
     },
 
     async deleteDataAction (product_ids: string) {
@@ -72,6 +77,14 @@ const useCartStore = defineStore('cart', {
 
       // 删除成功后重新请求购物车数据
       this.getDataAction()
+    },
+
+    loadLocalData () {
+      const cartList = localCache.getCache('cartList')
+
+      if (cartList) {
+        this.cartList = cartList
+      }
     }
   }
 })

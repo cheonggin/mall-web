@@ -53,8 +53,9 @@ const router = useRouter()
 // pinia
 const cartStore = useCartStore()
 const orderStore = useOrderStore()
-cartStore.getDataAction()
-const total = computed(() => cartStore.total) // 购物车列表中所有产品的个数总和
+cartStore.loadLocalData()
+const total = computed(() => cartStore.total)
+const cartList = computed(() => cartStore.cartList)
 
 const route = useRoute()
 const product_id = ref(parseInt(route.params.id as string))
@@ -99,9 +100,11 @@ function onScroll (pos: { x: number; y: number }) {
 }
 
 // 添加到购物车
-function addToCart () {
+async function addToCart () {
+  await cartStore.getDataAction()
+
   // 判断cartList中是否有该产品，有则修改产品的count值，无则新增
-  const value = cartStore.cartList.find(item => item.product_id === product_id.value)
+  const value = cartList.value.find(item => item.product_id === product_id.value)
 
   if (value) {
     value.count++
