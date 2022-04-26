@@ -1,16 +1,17 @@
 <template>
   <div class="payment">
     <h1 v-if="payStatus">支付成功~</h1>
-    <h1 v-else>支付失败</h1>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 import { useOrderStore } from '@/store/order'
 import { addData } from '@/service'
+
+const router = useRouter()
 
 // pinia
 const orderStore = useOrderStore()
@@ -29,6 +30,8 @@ addData('/payment-success', data).then(res => {
   // 支付后返回的数据
   if (res.data.code === 4) {
     payStatus.value = true
+
+    router.push('/profile/order-list')
   }
 })
 </script>
