@@ -3,12 +3,16 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 const homeVue = () => import('@/views/home/home.vue')
 const categoryVue = () => import('@/views/category/category.vue')
 const cartVue = () => import('@/views/cart/cart.vue')
+
 const profileVue = () => import('@/views/profile/children/profile.vue')
 const profileSettingVue = () => import('@/views/profile/children/profile-setting.vue')
 const profileAddressVue = () => import('@/views/profile/children/profile-address.vue')
 const profileAddressEditVue = () => import('@/views/profile/children/profile-address-edit.vue')
+const profileOrderVue = () => import('@/views/profile/children/profile-order.vue')
+
 const searchVue = () => import('@/views/search/search.vue')
 const searchListVue = () => import('@/views/search/search-list.vue')
+
 const detailVue = () => import('@/views/detail/detail.vue')
 const loginVue = () => import('@/views/login-register/login.vue')
 const registerVue = () => import('@/views/login-register/register.vue')
@@ -65,7 +69,8 @@ const routes: Array<RouteRecordRaw> = [
         path: '/profile/address/edit/:id',
         name: 'profile-address-edit',
         component: profileAddressEditVue
-      }
+      },
+      { path: '/profile/order-list', name: 'profile-order-list', component: profileOrderVue, meta: { isShowTabbar: true } }
     ]
   },
 

@@ -14,7 +14,7 @@
     </header>
     <div class="line"></div>
     <ul class="items" v-if="loginState">
-      <li>
+      <li @click="$router.push('/profile/order-list')">
         <i class="iconfont icon-order"></i>
         <cite>我的订单</cite>
       </li>

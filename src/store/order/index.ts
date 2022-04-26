@@ -1,4 +1,4 @@
-import { addData } from '@/service'
+import { addData, getData } from '@/service'
 import { sessionCache } from '@/utils/cache'
 import { defineStore } from 'pinia'
 
@@ -8,7 +8,25 @@ const useOrderStore = defineStore('order', {
   state: (): OrderState => {
     return {
       orderGoodsList: [],
-      order_number: ''
+      order_number: '',
+      orderList: []
+    }
+  },
+
+  getters: {
+    total: state => {
+      const tmp = {
+        count: 0,
+        price: 0
+      }
+      state.orderList.forEach(item => {
+        item.goodsList.forEach(value => {
+          tmp.count += value.count
+          tmp.price += (value.count * parseInt(value.product.price))
+        })
+      })
+
+      return tmp
     }
   },
 
@@ -26,6 +44,12 @@ const useOrderStore = defineStore('order', {
 
       this.order_number = data.order_number
       sessionCache.setCache('order_number', this.order_number)
+    },
+
+    async getAllDataAction () {
+      const { data } = await getData('/page/order')
+
+      this.orderList = data
     }
   }
 })
