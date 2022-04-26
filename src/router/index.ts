@@ -1,3 +1,4 @@
+import { localCache } from '@/utils/cache'
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 
 const homeVue = () => import('@/views/home/home.vue')
@@ -89,6 +90,25 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHashHistory(process.env.BASE_URL),
   routes
+})
+
+// 白名单
+const whiteListComponentName = ['home', 'category', 'profile', 'search', 'search-list', 'detail', 'login', 'register']
+
+router.beforeEach((to, from, next) => {
+// 获取token
+  const token = localCache.getCache('token')
+
+  if (!token) {
+    // 若无token判断是否在白名单中
+    if (whiteListComponentName.includes(to.name as string)) {
+      return next()
+    } else {
+      return next('/register')
+    }
+  }
+
+  next()
 })
 
 export default router
