@@ -6,6 +6,19 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
+
+    <% if(htmlWebpackPlugin.options.isProd){ %>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/vue@3.2.13/dist/vue.global.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vue-router@4.0.3/dist/vue-router.global.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/pinia@2.0.12/dist/pinia.iife.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/axios@0.26.1/dist/axios.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@better-scroll/core@2.4.2/dist/core.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@better-scroll/mouse-wheel@2.4.2/dist/mouse-wheel.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@better-scroll/observe-dom@2.4.2/dist/observe-dom.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@better-scroll/pull-up@2.4.2/dist/pull-up.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@vant/area-data@1.2.3/dist/index.cjs.min.js"></script>
+      <% } %>
   </head>
   <body>
     <noscript>
