@@ -34,8 +34,6 @@ const list = computed(() => addressStore.addressList)
 const chosenAddressId = ref(1)
 const isOrderJump = ref((route.query.type as string) === 'order') // 记录当前页面是否从order页面跳转过来
 
-console.log(route.query.type)
-
 function onAdd () {
   addressStore.addressInfo = {} as AddressEditInfo
   router.push('/profile/address/edit')
