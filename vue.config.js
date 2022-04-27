@@ -4,6 +4,7 @@ const Components = require('unplugin-vue-components/webpack')
 const { VantResolver } = require('unplugin-vue-components/resolvers')
 
 module.exports = defineConfig({
+  publicPath: './',
   transpileDependencies: true,
   configureWebpack: {
     plugins: [
@@ -28,13 +29,7 @@ module.exports = defineConfig({
       config.set('externals', {
         vue: 'Vue',
         'vue-router': 'VueRouter',
-        pinia: 'Pinia',
-        axios: 'axios',
-        '@better-scroll/core': 'BScroll',
-        'better-scroll/observe-dom': 'ObserveDOM',
-        '@better-scroll/mouse-wheel': 'MouseWheel',
-        '@better-scroll/pull-up': 'Pullup',
-        '@vant/area-data': 'areaList'
+        axios: 'axios'
       })
 
       // 生产模式引入cdn资源
@@ -55,4 +50,5 @@ module.exports = defineConfig({
       })
     })
   }
+
 })
