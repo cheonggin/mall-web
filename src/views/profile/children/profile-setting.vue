@@ -3,11 +3,13 @@
     <ProfileNav title="个人中心" />
 
     <div class="wrapper ignore">
-      <van-uploader result-type="file" :after-read="handleUpload">
-        <img v-if="fileUrl" :src="fileUrl" alt="" />
-        <van-icon v-else name="plus" />
-        <p>点击上传头像</p>
+      <van-uploader
+        upload-text="点击上传本地图片"
+        v-model="fileList"
+        :after-read="handleUpload"
+      >
       </van-uploader>
+      <van-button type="primary" @click="updateAvatar" >更新头像</van-button>
     </div>
 
     <ProfileFooter title="退出账号" @after-click="logout" />
@@ -15,25 +17,32 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { Toast } from 'vant'
+import { Toast, UploaderFileListItem } from 'vant'
 import { useLoginStore } from '@/store/login/login'
 
 import ProfileNav from './profile-nav.vue'
 import ProfileFooter from './profile-footer.vue'
 import { localCache } from '@/utils/cache'
 import { IUserInfo } from '@/store/login/types'
+import { uploadAvatar } from '@/service'
 
 const router = useRouter()
 const loginStore = useLoginStore()
-const fileUrl = computed(() => loginStore.avatarUrl)
+const fileList = ref<UploaderFileListItem[]>([])
 
 async function handleUpload (file: any) {
   const formData = new FormData()
   formData.append('file', file.file)
 
-  loginStore.uploadAvatarAction(formData)
+  // 上传本地图片
+  const { data } = await uploadAvatar(formData)
+  fileList.value = [data]
+}
+
+async function updateAvatar () {
+  await loginStore.updateUserAvatarAction(fileList.value[0].url as string)
 }
 
 // 退出登录
@@ -52,28 +61,16 @@ function logout () {
 
 <style lang="scss" scoped>
 .wrapper {
-  margin: 3rem auto;
-  padding: 0 0.5rem;
-  box-sizing: border-box;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem auto;
+  // padding: 0 0.5rem;
+  // box-sizing: border-box;
 
-  .van-uploader {
-    width: 4rem;
-    height: 4rem;
-    border: 1px dashed #ccc;
-    box-sizing: border-box;
-    text-align: center;
-    left: 50%;
-    transform: translateX(-50%);
-
-    .van-icon {
-      width: 4rem;
-      height: 2rem;
-      top: 50%;
-    }
-
-    img {
-      width: 100%;
-    }
+  .van-button{
+margin-top: 0.4rem;
   }
 }
 </style>

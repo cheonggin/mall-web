@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { Toast } from 'vant'
 
-import { login, uploadAvatar } from '@/service'
+import { login, updateData } from '@/service'
 import { LoginDto, LoginState, IUserInfo } from './types'
 import { localCache } from '@/utils/cache'
 import router from '@/router'
@@ -13,9 +13,6 @@ const useLoginStore = defineStore('login', {
       token: '',
       loginState: false
     }
-  },
-  getters: {
-    avatarUrl: state => state.userInfo.avatar_url
   },
   actions: {
     async loginAction (loginDto: LoginDto) {
@@ -35,12 +32,13 @@ const useLoginStore = defineStore('login', {
       }
     },
 
-    async uploadAvatarAction (file:any) {
-      const { data } = await uploadAvatar(file)
+    async updateUserAvatarAction (url: string) {
+      await updateData('/user/avatar', { avatar_url: url })
 
       // 更新用户头像
-      this.userInfo.avatar_url = data.url
+      this.userInfo.avatar_url = url
       localCache.setCache('user_info', this.userInfo)
+      Toast.success('更新头像成功')
     },
 
     loadLocalLogin () {

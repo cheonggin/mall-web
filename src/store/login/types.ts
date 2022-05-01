@@ -1,3 +1,5 @@
+import { UploaderFileListItem } from 'vant'
+
 export interface LoginDto {
   name: string
   password: string
