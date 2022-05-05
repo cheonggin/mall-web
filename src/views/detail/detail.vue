@@ -8,6 +8,7 @@
       ref="scrollRef"
       class="detail-content ignore"
       :probe-type="3"
+      event-passthrough="horizontal"
       @scroll="onScroll"
     >
       <div>
