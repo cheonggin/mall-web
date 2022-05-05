@@ -1,5 +1,5 @@
 <template>
-  <van-swipe :autoplay="3000" lazy-render>
+  <van-swipe :autoplay="3000" lazy-render :stop-propagation="false">
     <van-swipe-item v-for="item in images" :key="item.path">
       <a :href="item.path">
         <img :src="item.img_url" />
