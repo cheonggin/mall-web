@@ -1,24 +1,20 @@
 # mall
 
-## Project setup
-```
-npm install
-```
+本项目前后端分离，参考小米移动端商城实现。
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+实现了首页、商品分类、商品详细信息展示、购物车、订单结算、登录、注册、地址管理、对接支付宝沙箱实现支付
 
-### Compiles and minifies for production
-```
-npm run build
-```
+项目演示地址：
 
-### Lints and fixes files
-```
-npm run lint
-```
+[移动端预览](https://mi.zhanggin.work/)<br>
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+[后端项目地址源码](https://github.com/zhanggin/node-mall)
+
+# 支付宝沙箱支付账号
+
+账号：`vkvsku7385@sandbox.com`
+密码：`111111`
+
+# 免责声明
+
+本项目为仿做项目，仅做练手和学习使用，非官方 App，禁止用于商业目的，产生的一切侵权著作法律后果，与本作者无关。
